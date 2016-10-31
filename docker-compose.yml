@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  # Web server - For live reload and development
+  # This environment can be used to run npm and node
+  # commands as well
+  dev:
+    image: jclemgruber/quasar-framework:v0.8.2
+    container_name: snm-app-dev
+    command: quasar dev mat
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 8080:8080
+
+  # Testing dist on a "real" webserver
+  production-server:
+    image: nginx:stable-alpine
+    container_name: snm-app-server
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - 9090:80
