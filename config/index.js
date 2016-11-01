@@ -19,6 +19,11 @@ module.exports = {
     env: require('./dev.env'),
     publicPath: '',
     port: 8080,
-    proxyTable: {}
+    proxyTable: {
+      '/api': {
+        target: 'http://snm.dev',
+        changeOrigin: true
+      }
+    }
   }
 }

@@ -21,6 +21,17 @@ function load (name) {
 export default new VueRouter({
   routes: [
     { path: '/', component: load('index') }, // Default
+    { path: '/login', component: load('auth/login') },
+    {
+      path: '/home',
+      component: load('layout/main'),
+      children: [
+        {
+          path: '/',
+          component: load('home')
+        }
+      ]
+    },
     { path: '*', component: load('error404') } // Not found
   ]
 })

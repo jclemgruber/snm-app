@@ -2,15 +2,16 @@
   <quasar-layout>
     <div slot="header" class="toolbar">
       <quasar-toolbar-title :padding="1">
-        Quasar Framework
+        SNM
       </quasar-toolbar-title>
+
+      <div class="list no-border platform-delimiter">
+          <quasar-drawer-link to="/login" exact>
+            Login
+          </quasar-drawer-link>
+      </div>
     </div>
 
-    <!--
-      Replace following "div" with
-      "<router-view class="layout-view">" component
-      if using subRoutes
-    -->
     <div class="layout-view">
       <div class="logo-container non-selectable no-pointer-events">
         <div class="logo" :style="position">
