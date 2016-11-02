@@ -22,6 +22,8 @@ export default new VueRouter({
   routes: [
     { path: '/', component: load('index') }, // Default
     { path: '/login', component: load('auth/login') },
+    { path: '/logout', component: load('auth/logout') },
+    { path: '/register', component: load('auth/register') },
     {
       path: '/home',
       component: load('layout/main'),
@@ -30,6 +32,14 @@ export default new VueRouter({
           path: '/',
           component: load('home')
         }
+      ]
+    },
+    {
+      path: '/temas',
+      component: load('layout/main'),
+      children: [
+        { path: '/', component: load('admin/temas') },
+        { path: 'create', component: load('admin/tema') }
       ]
     },
     { path: '*', component: load('error404') } // Not found

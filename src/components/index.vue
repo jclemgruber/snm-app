@@ -5,11 +5,14 @@
         SNM
       </quasar-toolbar-title>
 
-      <div class="list no-border platform-delimiter">
+      <!--div class="list no-border platform-delimiter"-->
           <quasar-drawer-link to="/login" exact>
             Login
           </quasar-drawer-link>
-      </div>
+          <quasar-drawer-link to="/register" exact>
+            Registrar
+          </quasar-drawer-link>
+      <!--/div-->
     </div>
 
     <div class="layout-view">

@@ -21,7 +21,7 @@ module.exports = {
     port: 8080,
     proxyTable: {
       '/api': {
-        target: 'http://snm.dev',
+        target: 'http://172.17.0.1',
         changeOrigin: true
       }
     }
