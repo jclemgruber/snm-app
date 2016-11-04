@@ -6,14 +6,14 @@
       <i>add_circle</i>
     </button>
 
-    <div class="card" v-for="Tema in Temas">
+    <div class="card" v-for="Tema in Temas" v-component="item">
 
       <div class="card-title" v-bind:class="{ 'bg-primary text-white': Tema.ativo }">
         {{Tema.nome}}
       </div>
 
       <div class="card-content card-force-top-padding">
-        <p>Realização de {{Tema.inicio_evento}} a {{Tema.fim_evento}}.<p>
+        <p>Realização de {{ Tema.inicio_evento }} a {{ Tema.fim_evento }}.<p>
         <p>Inscrições abertas de {{Tema.inicio_inscricoes}} a {{Tema.fim_inscricoes}}</p>
       </div>
 
@@ -38,12 +38,23 @@
 
 <script>
 import { Loading, Toast } from 'quasar'
+// import moment from 'moment'
 
 export default {
   name: 'TemaList',
   data () {
     return {
       Temas: []
+    }
+  },
+
+  components: {
+    item: {
+      computed: {
+        inicio_evento: function () {
+          return 'teste'
+        }
+      }
     }
   },
 
