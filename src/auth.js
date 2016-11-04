@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from './router'
 import { Toast, SessionStorage } from 'quasar'
+import helper from './libs/helper'
 
 export default {
 
@@ -14,29 +15,36 @@ export default {
 
       this.user.authenticated = true
       Vue.http.headers.common['Authorization'] = 'Bearer ' + SessionStorage.get.item('id_token')
-      this.getAuthUser(context)
 
-      if (redirect) {
-        Router.push(redirect)
-      }
+      context.$http.get('/api/user').then((response) => {
+        SessionStorage.set('user', response.data)
+        if (redirect) {
+          Router.push(redirect)
+        }
+      }, (response) => {
+        Toast.create.negative('Erro ao buscar informações do usuário!')
+      })
     }, (response) => {
-      Toast.create.negative(response.json().error)
+      Toast.create.negative(response.data.error)
     })
   },
 
   signup (context, creds, redirect) {
     context.$http.post('/api/register', creds).then((response) => {
-      SessionStorage.set('id_token', response.data.token)
-
-      this.user.authenticated = true
-      Vue.http.headers.common['Authorization'] = 'Bearer ' + SessionStorage.get.item('id_token')
-      this.getAuthUser(context)
-
+      Toast.create({
+        html: 'Usuário ' + response.data.email + ' cadastrado !',
+        icon: 'thumb_up'
+      })
       if (redirect) {
         Router.push(redirect)
       }
+      // SessionStorage.set('id_token', response.data.token)
+
+      // this.user.authenticated = true
+      // Vue.http.headers.common['Authorization'] = 'Bearer ' + SessionStorage.get.item('id_token')
     }, (response) => {
-      Toast.create.negative(response.json().error)
+      let strResp = helper.formatAsHtmlList(helper.getListError(response.data))
+      Toast.create.negative({html: strResp, timeout: 25000})
     })
   },
 
@@ -55,13 +63,5 @@ export default {
     else {
       this.user.authenticated = false
     }
-  },
-
-  getAuthUser (context) {
-    context.$http.get('/api/user').then((response) => {
-      SessionStorage.set('user', response.json())
-    }, (response) => {
-      Toast.create.negative('Something went wrong!')
-    })
   }
 }
