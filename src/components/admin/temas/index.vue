@@ -8,12 +8,12 @@
 
     <div class="card" v-for="Tema in Temas">
 
-      <div class="card-title">
+      <div class="card-title" v-bind:class="{ 'bg-primary text-white': Tema.ativo }">
         {{Tema.nome}}
       </div>
 
-      <div class="card-content">
-        <p>Evento realizado no período de {{Tema.inicio_evento}} a {{Tema.fim_evento}}.<p>
+      <div class="card-content card-force-top-padding">
+        <p>Realização de {{Tema.inicio_evento}} a {{Tema.fim_evento}}.<p>
         <p>Inscrições abertas de {{Tema.inicio_inscricoes}} a {{Tema.fim_inscricoes}}</p>
       </div>
 
@@ -40,6 +40,7 @@
 import { Loading, Toast } from 'quasar'
 
 export default {
+  name: 'TemaList',
   data () {
     return {
       Temas: []
@@ -52,7 +53,7 @@ export default {
 
   methods: {
     loadTemas () {
-      Loading.show({delay: 100})
+      Loading.show()
       this.$http.get('/api/temas').then((response) => {
         this.Temas = response.data
         Loading.hide()

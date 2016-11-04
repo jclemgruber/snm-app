@@ -1,7 +1,4 @@
 <template>
-  <div class="layout-padding">
-    <h4>Novo Tema</h4>
-    {{Tema.inicio_evento}}
     <div class="layout-view layout-padding">
       <div class="list">
 
@@ -54,43 +51,19 @@
           </div>
         </div>
 
-        <button class="primary full-width" @click="submit">Salvar</button>
-
       </div>
 
     </div>
-
-  </div>
 </template>
 
 <script>
-import {Toast} from 'quasar'
-import helper from '../../libs/helper'
-import moment from 'moment'
-const now = moment().format('YYYY-MM-DD')
-
 export default {
-  data () {
-    return {
-      Tema: {
-        nome: '',
-        ativo: false,
-        inicio_evento: now,
-        fim_evento: now,
-        inicio_inscricoes: now,
-        fim_inscricoes: now
+  props: {
+    Tema: {
+      type: Object,
+      default: function () {
+        return { Tema: {} }
       }
-    }
-  },
-
-  methods: {
-    submit () {
-      this.$http.post('/api/temas', this.Tema).then((response) => {
-        Toast.create('Tema cadastrado!')
-      }, (response) => {
-        let strResp = helper.formatAsHtmlList(helper.getListError(response.data))
-        Toast.create.negative({html: strResp, timeout: 25000})
-      })
     }
   }
 }
