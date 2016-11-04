@@ -22,7 +22,7 @@
       <div class="list no-border inner-delimiter">
         <div class="item">
           <div class="item-content pull-left">
-              <button type="button" class="primary circular small outline"><i>settings</i></button>
+              <button type="button" class="primary circular small outline" @click="editTema(Tema.id)"><i>settings</i></button>
           </div>
 
           <div class="item-content pull-right">
@@ -65,6 +65,10 @@ export default {
 
     newTema () {
       this.$router.push('/temas/create')
+    },
+
+    editTema (id) {
+      this.$router.push('/temas/' + id)
     }
   }
 }

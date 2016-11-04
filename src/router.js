@@ -39,8 +39,9 @@ export default new VueRouter({
       component: load('layout/main'),
       children: [
         { path: '/', component: load('admin/temas/index') },
-        { path: ':id', component: load('admin/temas/update') },
-        { path: 'create', component: load('admin/temas/create') }
+        { path: 'create', component: load('admin/temas/create') },
+        { path: ':id', component: load('admin/temas/update') }
+
       ]
     },
     { path: '*', component: load('error404') } // Not found

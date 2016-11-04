@@ -2,7 +2,7 @@
   <div class="layout-padding">
     <h4>Novo Tema</h4>
 
-    <tema-form v-bind:Tema="Tema"></tema-form>
+    <tema-form :Tema="Tema"></tema-form>
     <button class="primary full-width" @click="submit">Criar Tema</button>
 
   </div>
@@ -18,7 +18,7 @@ const now = moment().toISOString()
 export default {
   name: 'TemaCreate',
   components: {
-    TemaForm
+    'tema-form': TemaForm
   },
   data () {
     return {

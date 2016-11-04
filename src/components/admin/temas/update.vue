@@ -2,7 +2,7 @@
   <div class="layout-padding">
     <h4>Editar Tema: {{this.$route.params.id}}</h4>
 
-    <tema-form v-bind:Tema="Tema"></tema-form>
+    <tema-form :Tema="Tema"></tema-form>
     <button class="primary full-width" @click="submit">Salvar Tema</button>
 
   </div>
@@ -12,6 +12,8 @@
 import TemaForm from './tema'
 import {Toast, Loading} from 'quasar'
 import helper from '../../../libs/helper'
+import moment from 'moment'
+const now = moment().toISOString()
 
 export default {
   name: 'TemaUpdate',
@@ -21,7 +23,14 @@ export default {
 
   data () {
     return {
-      Tema: {}
+      Tema: {
+        nome: '',
+        ativo: false,
+        inicio_evento: now,
+        fim_evento: now,
+        inicio_inscricoes: now,
+        fim_inscricoes: now
+      }
     }
   },
 

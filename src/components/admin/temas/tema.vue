@@ -60,10 +60,7 @@
 export default {
   props: {
     Tema: {
-      type: Object,
-      default: function () {
-        return { Tema: {} }
-      }
+      type: Object
     }
   }
 }
