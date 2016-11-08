@@ -1,5 +1,6 @@
 <template>
     <div class="layout-view layout-padding">
+
       <div class="list">
 
         <div class="item three-lines">
@@ -25,14 +26,14 @@
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data início do evento</p>
-            <quasar-datetime v-model="Tema.inicio_evento" format="DD/MM/YYYY" type="date" required class="full-width"></quasar-datetime>
+            <quasar-datetime v-model="Tema.inicio_evento" type="date" required class="full-width"></quasar-datetime>
           </div>
         </div>
         <hr>
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data fim do evento</p>
-            <quasar-datetime v-model="Tema.fim_evento" format="DD/MM/YYYY" type="date" required class="full-width"></quasar-datetime>
+            <quasar-datetime v-model="Tema.fim_evento" type="date" required class="full-width"></quasar-datetime>
           </div>
         </div>
 
@@ -40,14 +41,14 @@
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data início das inscrições</p>
-            <quasar-datetime v-model="Tema.inicio_inscricoes" format="DD/MM/YYYY" type="date" required class="full-width"></quasar-datetime>
+            <quasar-datetime v-model="Tema.inicio_inscricoes"  type="date" required class="full-width"></quasar-datetime>
           </div>
         </div>
         <hr>
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data fim das inscrições</p>
-            <quasar-datetime v-model="Tema.fim_inscricoes" format="DD/MM/YYYY" type="date" required class="full-width"></quasar-datetime>
+            <quasar-datetime v-model="Tema.fim_inscricoes" type="date" required class="full-width"></quasar-datetime>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ services:
   # This environment can be used to run npm and node
   # commands as well
   dev:
-    image: ambiente/quasar-cli
+    image: ambiente/quasar-cli:0.8.2
     container_name: snm-app-dev
     command: quasar dev mat
     volumes:

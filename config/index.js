@@ -21,7 +21,7 @@ module.exports = {
     port: 8080,
     proxyTable: {
       '/api': {
-        target: 'http://192.168.99.100',
+        target: 'http://172.18.0.1', // http://172.18.0.1 http://192.168.99.100
         changeOrigin: true
       }
     }

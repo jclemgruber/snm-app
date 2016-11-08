@@ -23,6 +23,14 @@ class Helper {
 
     return strResp
   }
+
+  getTextError (response) {
+    if (typeof response.data !== 'object') {
+      return response.statusText
+    }
+
+    return this.formatAsHtmlList(this.getListError(response.data))
+  }
 }
 
 const helper = new Helper()

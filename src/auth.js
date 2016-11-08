@@ -25,6 +25,7 @@ export default {
         Toast.create.negative('Erro ao buscar informações do usuário!')
       })
     }, (response) => {
+      console.log(response)
       Toast.create.negative(response.data.error)
     })
   },

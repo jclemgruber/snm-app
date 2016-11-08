@@ -43,6 +43,13 @@ export default {
       Loading.show()
       this.$http.get('/api/temas/' + this.$route.params.id).then((response) => {
         this.Tema = response.data
+        // Tranforma os campos data considerando o Timezone afim de evitar
+        // o problema da data - 1
+        this.Tema.inicio_evento = moment.utc(response.data.inicio_evento).format('YYYY-MM-DD')
+        this.Tema.fim_evento = moment.utc(response.data.fim_evento).format('YYYY-MM-DD')
+        this.Tema.inicio_inscricoes = moment.utc(response.data.inicio_inscricoes).format('YYYY-MM-DD')
+        this.Tema.fim_inscricoes = moment.utc(response.data.fim_inscricoes).format('YYYY-MM-DD')
+
         Loading.hide()
       }, (response) => {
         Loading.hide()
@@ -55,8 +62,7 @@ export default {
         Toast.create('Tema atualizado!')
         this.$router.push('/temas')
       }, (response) => {
-        let strResp = helper.formatAsHtmlList(helper.getListError(response.data))
-        Toast.create.negative({html: strResp, timeout: 25000})
+        Toast.create.negative({html: helper.getTextError(response), timeout: 25000})
       })
     }
   }

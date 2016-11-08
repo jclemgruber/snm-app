@@ -35,6 +35,14 @@ export default new VueRouter({
       ]
     },
     {
+      path: '/museus',
+      component: load('layout/main'),
+      children: [
+        { path: '/', component: load('museus/index') },
+        { path: 'create', component: load('museus/create') }
+      ]
+    },
+    {
       path: '/temas',
       component: load('layout/main'),
       children: [

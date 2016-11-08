@@ -6,15 +6,18 @@
       <i>add_circle</i>
     </button>
 
-    <div class="card" v-for="Tema in Temas" v-component="item">
+    <div class="card" v-for="Tema in Temas">
 
       <div class="card-title" v-bind:class="{ 'bg-primary text-white': Tema.ativo }">
         {{Tema.nome}}
       </div>
 
       <div class="card-content card-force-top-padding">
-        <p>Realização de {{ Tema.inicio_evento }} a {{ Tema.fim_evento }}.<p>
-        <p>Inscrições abertas de {{Tema.inicio_inscricoes}} a {{Tema.fim_inscricoes}}</p>
+        <p>Realização de <date-format :value="Tema.inicio_evento"></date-format> a
+                         <date-format :value="Tema.fim_evento"></date-format> <br/>
+           Inscrições abertas de <date-format :value="Tema.inicio_inscricoes"></date-format> a
+                                 <date-format :value="Tema.fim_inscricoes"></date-format>
+        </p>
       </div>
 
       <hr/>
@@ -38,7 +41,7 @@
 
 <script>
 import { Loading, Toast } from 'quasar'
-// import moment from 'moment'
+import dateFormat from '../../common/date-format'
 
 export default {
   name: 'TemaList',
@@ -49,13 +52,7 @@ export default {
   },
 
   components: {
-    item: {
-      computed: {
-        inicio_evento: function () {
-          return 'teste'
-        }
-      }
-    }
+    dateFormat
   },
 
   created () {
