@@ -2,21 +2,35 @@
   <div class="layout-padding">
     <h4>Novo Museu</h4>
 
-    <museu-form :Museu="Museu" :InstituicaoTipos="InstituicaoTipos"></museu-form>
+      <quasar-tabs :refs="$refs" default-tab="tab-1">
+        <quasar-tab name="tab-1" icon="store_mall_directory">Cadastro</quasar-tab>
+        <quasar-tab name="tab-2" icon="edit_location">Endereço</quasar-tab>
+      </quasar-tabs>
+
+       <div ref="tab-1">
+          <museu-cadastro :Museu="Museu" :InstituicaoTipos="InstituicaoTipos"></museu-cadastro>
+       </div>
+
+       <div ref="tab-2">
+          <museu-endereco :MuseuEndereco="MuseuEndereco"></museu-endereco>
+       </div>
+
     <button class="primary full-width" @click="submit">Criar Museu</button>
 
   </div>
 </template>
 
 <script>
-import MuseuForm from './museu'
+import MuseuCad from './_museucad'
+import MuseuEnd from './_museuend'
 import {Toast, Loading} from 'quasar'
 import helper from '../../libs/helper'
 
 export default {
   name: 'MuseuCreate',
   components: {
-    'museu-form': MuseuForm
+    'museu-cadastro': MuseuCad,
+    'museu-endereco': MuseuEnd
   },
   data () {
     return {
@@ -27,6 +41,15 @@ export default {
         fone1: '',
         fone2: '',
         instituicao_tipo_id: ''
+      },
+
+      MuseuEndereco: {
+        cep: '',
+        logradouro: '',
+        numero: '',
+        complemento: '',
+        bairro: '',
+        cidade_id: ''
       },
 
       InstituicaoTipos: [

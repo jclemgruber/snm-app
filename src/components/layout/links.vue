@@ -3,6 +3,9 @@
     <quasar-drawer-link to="/temas" exact v-show="authenticated">
       Temas
     </quasar-drawer-link>
+    <quasar-drawer-link to="/museus" exact v-show="authenticated">
+      Museus
+    </quasar-drawer-link>
     <hr/>
     <quasar-drawer-link to="/logout" exact v-show="authenticated">
       Logout
