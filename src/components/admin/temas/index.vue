@@ -2,8 +2,10 @@
   <div class="layout-padding">
     <h4>Temas</h4>
 
-    <button class="primary circular absolute-bottom-right push" @click="newTema()">
-      <i>add_circle</i>
+    <button class="primary big circular absolute-bottom-right push"
+            @click="newTema()"
+            style="right: 15px; bottom: 15px; z-index:2">
+      <i>add</i>
     </button>
 
     <div class="card" v-for="Tema in Temas">

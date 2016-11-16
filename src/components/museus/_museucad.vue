@@ -19,7 +19,6 @@
             type="radio"
             v-model="Museu.instituicao_tipo_id"
             :options="InstituicaoTipos"
-            placeholder="Selecione o tipo do Museu"
           ></quasar-select>
         </div>
       </div>

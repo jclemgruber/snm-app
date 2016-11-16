@@ -2,10 +2,21 @@
   <div class="list">
 
     <div class="item three-lines">
+      <i class="item-primary" @click.prevent="searchCEP">search</i>
       <div class="item-content">
         <div class="floating-label">
           <input v-model="MuseuEndereco.cep" v-mask="'##.###-###'" required class="full-width">
           <label>CEP</label>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <div class="item three-lines">
+      <div class="item-content">
+        <div class="floating-label">
+          <autocomplete v-model="MuseuEndereco.cidade_id" required class="full-width"></autocomplete>
+          <label>Cidade</label>
         </div>
       </div>
     </div>
@@ -50,19 +61,17 @@
       </div>
     </div>
 
-    <hr>
-    <div class="list-label">Tipo de Instiuição</div>
-    <div class="item multiple-lines">
-      <div class="item-content">
-        <quasar-search v-model="searchModel" @click="searchCidade"></quasar-search>
-      </div>
-    </div>
-
   </div>
 </template>
 
 <script>
+import Autocomplete from '../common/autocomplete'
+
 export default {
+  components: {
+    Autocomplete
+  },
+
   props: {
     MuseuEndereco: {
       type: Object
@@ -71,13 +80,32 @@ export default {
 
   data () {
     return {
-      searchModel: ''
+      value: ''
     }
   },
 
   methods: {
-    searchCidade () {
-      console.log(this.searchModel)
+    searchCEP () {
+      if (!this.MuseuEndereco.cep) {
+        return
+      }
+
+      var formattedCEP = this.MuseuEndereco.cep.split('.').join('').split('-').join('')
+
+      if (formattedCEP.length < 8) {
+        return
+      }
+
+      /* var options = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      } */
+
+      var url = 'https://viacep.com.br/ws/' + formattedCEP + '/json'
+      this.$http.get(url).then((response) => {
+        console.log(response)
+      }, {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}})
     }
   }
 }

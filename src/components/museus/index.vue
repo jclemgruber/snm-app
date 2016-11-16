@@ -2,8 +2,10 @@
   <div class="layout-padding">
     <h4>Meus Museus</h4>
 
-    <button class="primary circular absolute-bottom-right push" @click="newMuseu()">
-      <i>add_circle</i>
+    <button class="primary big circular absolute-bottom-right push"
+            @click="newMuseu()"
+            style="right: 15px; bottom: 15px; z-index:2">
+      <i>add</i>
     </button>
 
     <div class="card" v-for="Museu in Museus">
