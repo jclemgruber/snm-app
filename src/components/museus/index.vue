@@ -22,7 +22,7 @@
         </p>
         <p>
           {{Museu.email}} <br/>
-          {{Museu.fone1}} / {{Museu.fone2}}
+          {{Museu.fone1}} <span v-show="hasFone2(Museu)">/</span> {{Museu.fone2}}
         </p>
       </div>
 
@@ -78,6 +78,10 @@ export default {
 
     editMuseu (id) {
       this.$router.push('/museus/' + id)
+    },
+
+    hasFone2 (Museu) {
+      return Museu.fone2 !== undefined
     }
   }
 }

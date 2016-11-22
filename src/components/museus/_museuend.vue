@@ -65,9 +65,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Autocomplete from '../common/autocomplete'
+import {SessionStorage, Toast} from 'quasar'
 
 export default {
+  name: 'MuseuEndereco',
+
   components: {
     Autocomplete
   },
@@ -96,16 +100,23 @@ export default {
         return
       }
 
-      /* var options = {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        }
-      } */
+      delete Vue.http.headers.common['Authorization']
 
       var url = 'https://viacep.com.br/ws/' + formattedCEP + '/json'
       this.$http.get(url).then((response) => {
-        console.log(response)
-      }, {headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}})
+        this.MuseuEndereco.logradouro = response.data.logradouro
+        this.MuseuEndereco.complemento = response.data.complemento
+        this.MuseuEndereco.bairro = response.data.bairro
+        // this.MuseuEndereco.cidade_id = response.data.localidade
+      }, (response) => {
+        Toast.create.negative('CEP não encontrado!')
+        this.MuseuEndereco.logradouro = ''
+        this.MuseuEndereco.complemento = ''
+        this.MuseuEndereco.bairro = ''
+        // this.MuseuEndereco.cidade_id = ''
+      })
+
+      Vue.http.headers.common['Authorization'] = 'Bearer ' + SessionStorage.get.item('id_token')
     }
   }
 }

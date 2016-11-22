@@ -56,7 +56,7 @@
     <div class="item three-lines">
       <div class="item-content">
         <div class="floating-label">
-          <input v-model="Museu.fone2" required v-mask="'(##)####-####'" class="full-width">
+          <input v-model="Museu.fone2" required v-mask="'(##)#####-####'" class="full-width">
           <label>Telefone 2</label>
         </div>
       </div>
