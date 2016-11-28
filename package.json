@@ -1,7 +1,7 @@
 {
   "name": "quasar-app",
   "version": "0.0.1",
-  "description": "A Quasar App",
+  "description": "SNM App",
   "author": "Your Name",
   "scripts": {
     "clean": "node build/script.clean.js",

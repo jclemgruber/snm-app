@@ -1,6 +1,6 @@
 # Quasar App
 
-> A Quasar project
+> SNM PP is a Quasar project
 
 ## Build Setup
 
