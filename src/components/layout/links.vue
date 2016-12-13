@@ -1,15 +1,15 @@
 <template>
   <div class="list no-border platform-delimiter">
-    <quasar-drawer-link to="/temas" exact v-show="authenticated">
+    <q-drawer-link to="/temas" exact v-show="authenticated">
       Temas
-    </quasar-drawer-link>
-    <quasar-drawer-link to="/museus" exact v-show="authenticated">
+    </q-drawer-link>
+    <q-drawer-link to="/museus" exact v-show="authenticated">
       Museus
-    </quasar-drawer-link>
+    </q-drawer-link>
     <hr/>
-    <quasar-drawer-link to="/logout" exact v-show="authenticated">
+    <q-drawer-link to="/logout" exact v-show="authenticated">
       Logout
-    </quasar-drawer-link>
+    </q-drawer-link>
   </div>
 </template>
 

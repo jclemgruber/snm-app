@@ -1,17 +1,17 @@
 <template>
-  <quasar-layout>
+  <q-layout>
     <div slot="header" class="toolbar">
-      <quasar-toolbar-title :padding="1">
+      <q-toolbar-title :padding="1">
         SNM
-      </quasar-toolbar-title>
+      </q-toolbar-title>
 
       <!--div class="list no-border platform-delimiter"-->
-          <quasar-drawer-link to="/login" exact>
+          <q-drawer-link to="/login" exact>
             Login
-          </quasar-drawer-link>
-          <quasar-drawer-link to="/register" exact>
+          </q-drawer-link>
+          <q-drawer-link to="/register" exact>
             Registrar
-          </quasar-drawer-link>
+          </q-drawer-link>
       <!--/div-->
     </div>
 
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-  </quasar-layout>
+  </q-layout>
 </template>
 
 <script>

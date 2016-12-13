@@ -1,6 +1,6 @@
 <template>
   <div class="layout-padding">
-    <h4>Meus Museus</h4>
+    <h5>Meus Museus</h5>
 
     <button class="primary big circular absolute-bottom-right push"
             @click="newMuseu()"
@@ -8,38 +8,38 @@
       <i>add</i>
     </button>
 
-    <div class="card" v-for="Museu in Museus">
+    <div class="list" v-for="Museu in Museus">
+        <div class="item multiple-lines">
+            <div class="item-content has-secondary">
+                <div>{{Museu.nome}}</div>
+                    <div class="item-label item-smaller">{{Museu.enderecos[0].logradouro}},
+                                                          {{Museu.enderecos[0].numero}}
+                                                          {{Museu.enderecos[0].complemento}}
+                    </div>
+                    <div class="item-label item-smaller">{{Museu.enderecos[0].bairro}},
+                                                          {{Museu.enderecos[0].cidade.nome}}-{{Museu.enderecos[0].cidade.uf.abrev}}
+                    </div>
+                    <div class="item-label item-smaller">CEP: {{Museu.enderecos[0].cep}}</div>
+                    <br/>
+                    <div class="item-label item-smaller">{{Museu.email}}</div>
+                    <div class="item-label item-smaller">{{Museu.fone1}} <span v-show="hasFone2(Museu)">/</span> {{Museu.fone2}}</div>
+                </div>
+                <div class="item-secondary">
+                      <i slot="target">more_vert
+                        <q-popover ref="popover">
+                            <div class="list">
+                                <div class="item item-link" @click="editMuseu(Museu.id)">
+                                    <div class="item-content">Editar</div>
+                                </div>
+                                <div class="item item-link" @click="inscricoes(Museu.id)">
+                                    <div class="item-content">Inscrições</div>
+                                </div>
+                            </div>
+                        </q-popover>
+                    </i>
+                </div>
 
-      <div class="card-title">
-        {{Museu.nome}}
-      </div>
-
-      <div class="card-content card-force-top-padding">
-        <p>
-           {{Museu.enderecos[0].logradouro}}, {{Museu.enderecos[0].numero}} {{Museu.enderecos[0].complemento}} <br/>
-           {{Museu.enderecos[0].bairro}}, {{Museu.enderecos[0].cidade.nome}}-{{Museu.enderecos[0].cidade.uf.abrev}} <br/>
-           CEP: {{Museu.enderecos[0].cep}}
-        </p>
-        <p>
-          {{Museu.email}} <br/>
-          {{Museu.fone1}} <span v-show="hasFone2(Museu)">/</span> {{Museu.fone2}}
-        </p>
-      </div>
-
-      <hr/>
-
-      <div class="list no-border inner-delimiter">
-        <div class="item">
-          <div class="item-content pull-left">
-              <button type="button" class="primary circular small outline" @click="editMuseu(Museu.id)"><i>settings</i></button>
-          </div>
-
-          <div class="item-content pull-right">
-              <button type="button" class="primary circular small outline"><i>assignment</i></button>
-          </div>
         </div>
-      </div>
-
     </div>
 
   </div>
@@ -78,6 +78,10 @@ export default {
 
     editMuseu (id) {
       this.$router.push('/museus/' + id)
+    },
+
+    inscricoes (id) {
+      this.$router.push('/museus/' + id + '/inscricoes')
     },
 
     hasFone2 (Museu) {

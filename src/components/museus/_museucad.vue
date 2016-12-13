@@ -14,12 +14,12 @@
       <div class="list-label">Tipo de Instiuição</div>
       <div class="item multiple-lines">
         <div class="item-content">
-          <quasar-select
+          <q-select
             class="full-width"
             type="radio"
             v-model="Museu.instituicao_tipo_id"
             :options="InstituicaoTipos"
-          ></quasar-select>
+          ></q-select>
         </div>
       </div>
 

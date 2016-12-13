@@ -2,10 +2,10 @@
   <div class="layout-padding">
     <h4>Editar Museu {{this.$route.params.id}}</h4>
 
-      <quasar-tabs :refs="$refs" default-tab="tab-1">
-        <quasar-tab name="tab-1" icon="store_mall_directory">Cadastro</quasar-tab>
-        <quasar-tab name="tab-2" icon="edit_location">Endereço</quasar-tab>
-      </quasar-tabs>
+      <q-tabs :refs="$refs" default-tab="tab-1">
+        <q-tab name="tab-1" icon="store_mall_directory">Cadastro</q-tab>
+        <q-tab name="tab-2" icon="edit_location">Endereço</q-tab>
+      </q-tabs>
 
        <div ref="tab-1">
           <museu-cadastro :Museu="Museu" :InstituicaoTipos="InstituicaoTipos"></museu-cadastro>

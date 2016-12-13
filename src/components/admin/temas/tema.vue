@@ -17,7 +17,7 @@
           <div class="item-content">
             <p class="caption">Ativado?</p>
             <label>
-              <quasar-toggle v-model="Tema.ativo"></quasar-toogle>
+              <q-toggle v-model="Tema.ativo"></q-toogle>
             </label>
           </div>
         </div>
@@ -26,14 +26,14 @@
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data início do evento</p>
-            <quasar-datetime v-model="Tema.inicio_evento" type="date" required class="full-width"></quasar-datetime>
+            <q-datetime v-model="Tema.inicio_evento" type="date" required class="full-width"></q-datetime>
           </div>
         </div>
         <hr>
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data fim do evento</p>
-            <quasar-datetime v-model="Tema.fim_evento" type="date" required class="full-width"></quasar-datetime>
+            <q-datetime v-model="Tema.fim_evento" type="date" required class="full-width"></q-datetime>
           </div>
         </div>
 
@@ -41,14 +41,14 @@
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data início das inscrições</p>
-            <quasar-datetime v-model="Tema.inicio_inscricoes"  type="date" required class="full-width"></quasar-datetime>
+            <q-datetime v-model="Tema.inicio_inscricoes"  type="date" required class="full-width"></q-datetime>
           </div>
         </div>
         <hr>
         <div class="item three-lines">
           <div class="item-content">
             <p class="caption">Data fim das inscrições</p>
-            <quasar-datetime v-model="Tema.fim_inscricoes" type="date" required class="full-width"></quasar-datetime>
+            <q-datetime v-model="Tema.fim_inscricoes" type="date" required class="full-width"></q-datetime>
           </div>
         </div>
 

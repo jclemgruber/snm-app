@@ -1,16 +1,16 @@
 <template>
-  <quasar-layout>
+  <q-layout>
     <div slot="header" class="toolbar">
       <button @click="$refs.drawer.open()">
         <i>menu</i>
       </button>
-      <quasar-toolbar-title :padding="1">
+      <q-toolbar-title :padding="1">
         SNM
-      </quasar-toolbar-title>
-      <quasar-drawer-link to="/home" exact><i>home</i></quasar-drawer-link>
+      </q-toolbar-title>
+      <q-drawer-link to="/home" exact><i>home</i></q-drawer-link>
     </div>
 
-    <quasar-drawer swipe-only ref="drawer">
+    <q-drawer swipe-only ref="drawer">
       <div class="card bg-teal text-white" v-show="authenticated">
         <div class="card-title">
           <i>account_circle</i><span> {{ user.name }}</span>
@@ -21,12 +21,12 @@
       </div>
 
       <snm-links></snm-links>
-    </quasar-drawer>
+    </q-drawer>
 
     <router-view class="layout-view"></router-view>
 
     <!--div slot="footer" class="toolbar"></div-->
-  </quasar-layout>
+  </q-layout>
 </template>
 
 <script>

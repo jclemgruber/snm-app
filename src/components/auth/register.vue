@@ -1,12 +1,12 @@
 <template>
-  <quasar-layout>
+  <q-layout>
     <div slot="header" class="toolbar">
-      <quasar-toolbar-title :padding="1">
+      <q-toolbar-title :padding="1">
         <button v-go-back="'/'">
           <i>arrow_back</i>
         </button>
         Registrar
-      </quasar-toolbar-title>
+      </q-toolbar-title>
     </div>
     <div class="layout-view layout-padding">
       <div class="list">
@@ -62,7 +62,7 @@
       </div>
       <button class="primary full-width" @click="submit()">Registrar</button>
     </div>
-  </quasar-layout>
+  </q-layout>
 </template>
 
 <script>
