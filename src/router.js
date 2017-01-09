@@ -41,7 +41,8 @@ export default new VueRouter({
         { path: '/', component: load('museus/index') },
         { path: 'create', component: load('museus/create') },
         { path: ':id', component: load('museus/update') },
-        { path: ':id/inscricoes', component: load('museus/inscricoes/index') }
+        { path: ':id/inscricoes', component: load('museus/inscricoes/index') },
+        { path: ':id/inscrever', component: load('museus/inscricoes/create') }
       ]
     },
     {

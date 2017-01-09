@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="layout-padding">
     <h4>Temas</h4>
 
@@ -39,6 +40,7 @@
     </div>
 
   </div>
+</div>
 </template>
 
 <script>

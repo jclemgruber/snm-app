@@ -15,7 +15,9 @@
     <div class="item three-lines">
       <div class="item-content">
         <div class="floating-label">
-          <autocomplete v-model="MuseuEndereco.cidade_id" required class="full-width"></autocomplete>
+          <q-autocomplete v-model="terms" :min-characters="3" @search="searchCidade">
+            <input v-model="terms" class="full-width" placeholder="digite o nome da cidade" />
+          </q-autocomplete>
           <label>Cidade</label>
         </div>
       </div>
@@ -66,15 +68,10 @@
 
 <script>
 import Vue from 'vue'
-import Autocomplete from '../common/autocomplete'
 import {SessionStorage, Toast} from 'quasar'
 
 export default {
   name: 'MuseuEndereco',
-
-  components: {
-    Autocomplete
-  },
 
   props: {
     MuseuEndereco: {
@@ -84,11 +81,32 @@ export default {
 
   data () {
     return {
-      value: ''
+      terms: '',
+      limit: 5
+    }
+  },
+
+  computed: {
+    getParams () {
+      return {
+        'params': {
+          q: this.terms,
+          limit: this.limit
+        }
+      }
     }
   },
 
   methods: {
+    searchCidade (terms, done) {
+      this.$http.get('/api/cidades/list', this.getParams).then((response) => {
+        done(response.data)
+      }, (response) => {
+        console.log(response)
+        done([])
+      })
+    },
+
     searchCEP () {
       if (!this.MuseuEndereco.cep) {
         return

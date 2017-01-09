@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="layout-padding">
-    <h5>Meus Museus</h5>
+    <h5>Instituições</h5>
 
     <button class="primary big circular absolute-bottom-right push"
             @click="newMuseu()"
@@ -8,41 +9,41 @@
       <i>add</i>
     </button>
 
-    <div class="list" v-for="Museu in Museus">
-        <div class="item multiple-lines">
+    <div class="list">
+        <div class="item multiple-lines" v-for="Museu in Museus">
             <div class="item-content has-secondary">
                 <div>{{Museu.nome}}</div>
-                    <div class="item-label item-smaller">{{Museu.enderecos[0].logradouro}},
-                                                          {{Museu.enderecos[0].numero}}
-                                                          {{Museu.enderecos[0].complemento}}
-                    </div>
-                    <div class="item-label item-smaller">{{Museu.enderecos[0].bairro}},
-                                                          {{Museu.enderecos[0].cidade.nome}}-{{Museu.enderecos[0].cidade.uf.abrev}}
-                    </div>
-                    <div class="item-label item-smaller">CEP: {{Museu.enderecos[0].cep}}</div>
-                    <br/>
-                    <div class="item-label item-smaller">{{Museu.email}}</div>
-                    <div class="item-label item-smaller">{{Museu.fone1}} <span v-show="hasFone2(Museu)">/</span> {{Museu.fone2}}</div>
+                <div class="item-label item-smaller">{{Museu.enderecos[0].logradouro}},
+                                                      {{Museu.enderecos[0].numero}}
+                                                      {{Museu.enderecos[0].complemento}}
                 </div>
-                <div class="item-secondary">
-                      <i slot="target">more_vert
-                        <q-popover ref="popover">
-                            <div class="list">
-                                <div class="item item-link" @click="editMuseu(Museu.id)">
-                                    <div class="item-content">Editar</div>
-                                </div>
-                                <div class="item item-link" @click="inscricoes(Museu.id)">
-                                    <div class="item-content">Inscrições</div>
-                                </div>
+                <div class="item-label item-smaller">{{Museu.enderecos[0].bairro}},
+                                                      {{Museu.enderecos[0].cidade.nome}}-{{Museu.enderecos[0].cidade.uf.abrev}}
+                </div>
+                <div class="item-label item-smaller">CEP: {{Museu.enderecos[0].cep}}</div>
+                <br/>
+                <div class="item-label item-smaller">{{Museu.email}}</div>
+                <div class="item-label item-smaller">{{Museu.fone1}} <span v-show="hasFone2(Museu)">/</span> {{Museu.fone2}}</div>
+            </div>
+            <div class="item-secondary">
+                <i slot="target">more_vert
+                    <q-popover ref="popover">
+                        <div class="list">
+                            <div class="item item-link" @click="editMuseu(Museu.id)">
+                                <div class="item-content">Editar</div>
                             </div>
-                        </q-popover>
-                    </i>
-                </div>
-
+                            <div class="item item-link" @click="inscricoes(Museu.id)">
+                                <div class="item-content">Inscrições</div>
+                            </div>
+                        </div>
+                    </q-popover>
+                </i>
+            </div>
         </div>
     </div>
 
   </div>
+</div>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="layout-padding">
-    <h4>Editar Museu {{this.$route.params.id}}</h4>
+    <h5>Editar Museu {{this.$route.params.id}}</h5>
 
       <q-tabs :refs="$refs" default-tab="tab-1">
         <q-tab name="tab-1" icon="store_mall_directory">Cadastro</q-tab>
@@ -18,6 +19,7 @@
     <button class="primary full-width" @click="submit">Salvar Museu</button>
 
   </div>
+</div>
 </template>
 
 <script>
@@ -53,15 +55,13 @@ export default {
         this.Museu = response.data
         this.MuseuEndereco = response.data.enderecos[0]
 
-        Loading.hide()
-        /*
         this.$http.get('/api/instituicao/tipos').then((response) => {
           this.InstituicaoTipos = response.data
           Loading.hide()
         }, (response) => {
           Loading.hide()
           Toast.create.negative(response.data.error)
-        }) */
+        })
       }, (response) => {
         Loading.hide()
         Toast.create.negative(response.data.error)

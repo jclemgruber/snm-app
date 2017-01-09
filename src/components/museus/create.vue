@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="layout-padding">
-    <h4>Novo Museu</h4>
+    <h5>Novo Museu</h5>
 
       <q-tabs :refs="$refs" default-tab="tab-1">
         <q-tab name="tab-1" icon="store_mall_directory">Cadastro</q-tab>
@@ -18,6 +19,7 @@
     <button class="primary full-width" @click="submit">Cadastrar Museu</button>
 
   </div>
+</div>
 </template>
 
 <script>

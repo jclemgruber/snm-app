@@ -8,6 +8,7 @@
           Login
         </q-toolbar-title>
       </div>
+
       <div class="layout-view layout-padding">
         <div class="list">
           <div class="item three-lines">
@@ -32,6 +33,7 @@
         </div>
         <button class="primary full-width" @click="submit()">Login</button>
       </div>
+
     </q-layout>
 </template>
 

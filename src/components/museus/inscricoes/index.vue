@@ -1,9 +1,20 @@
 <template>
+<div>
   <div class="layout-padding">
       <h4>{{Museu.nome}}</h4>
 
-      <div class="list" v-for="Evento in Museu.eventos">
-          <div class="item multiple-lines">
+      <button class="primary big circular absolute-bottom-right push"
+              @click="inscrever()"
+              style="right: 15px; bottom: 15px; z-index:2">
+        <i>add</i>
+      </button>
+
+      <div v-show="!hasEventos">
+          <h5>Nenhuma inscrição realizada.</h5>
+      </div>
+
+      <div class="list">
+          <div class="item multiple-lines" v-for="Evento in Museu.eventos">
               <div class="item-content has-secondary">
                   <div>{{Evento.tipo.nome}}</div>
                       <div class="item-label item-smaller">{{Evento.descricao}}</div>
@@ -32,6 +43,7 @@
       </div>
 
   </div>
+</div>
 </template>
 
 <script>
@@ -51,6 +63,12 @@ export default {
     }
   },
 
+  computed: {
+    hasEventos () {
+      return (this.Museu.eventos !== undefined && this.Museu.eventos.length > 0)
+    }
+  },
+
   created () {
     this.fetchData()
   },
@@ -65,6 +83,10 @@ export default {
         Loading.hide()
         Toast.create.negative(response.data.error)
       })
+    },
+
+    inscrever () {
+      this.$router.push('/museus/' + this.$route.params.id + '/inscrever')
     }
   }
 }
