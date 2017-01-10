@@ -4,99 +4,28 @@
             <h4>{{Museu.nome}}</h4>
             <h5>Nova Inscrição</h5>
 
-            <div class="list">
+            <inscricao-form :Museu="Museu"
+                            :Evento="Evento"
+                            :EventoTipos="EventoTipos"
+            >
+            </inscricao-form>
 
-                <div class="list-label">Tipo do evento</div>
-                <div class="item multiple-lines">
-                  <div class="item-content">
-                    <q-select
-                      class="full-width"
-                      type="radio"
-                      v-model="Evento.evento_tipo_id"
-                      :options="EventoTipos"
-                    ></q-select>
-                  </div>
-                </div>
-                <hr/>
-
-                <div class="item multiple-lines">
-                    <div class="item-content">
-                        <div class="floating-label">
-                            <textarea v-model="Evento.descricao" required class="full-width"></textarea>
-                            <label>Descrição do evento</label>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
-
-                <div class="item multiple-lines">
-                    <div class="item-content">
-                        <label>
-                            <q-toggle v-model="Evento.no_endereco_do_museu"></q-toggle>
-                            No mesmo endereço do Museu
-                        </label>
-                    </div>
-                </div>
-
-                <div class="item multiple-lines" v-if="!Evento.no_endereco_do_museu">
-                    <div class="item-content">
-                        <div class="floating-label">
-                            <input v-model="Evento.local" required class="full-width">
-                            <label>Local de realização do evento</label>
-                        </div>
-
-                        <div class="floating-label">
-                            <input v-model="Evento.latitude" required class="full-width">
-                            <label>Latitude</label>
-                        </div>
-
-                        <div class="floating-label">
-                            <input v-model="Evento.longitude" required class="full-width">
-                            <label>Longitude</label>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
-
-                <div class="item multiple-lines">
-                    <div class="item-content">
-                        <div class="label">Período de realização do evento</div>
-                        <q-datetime-range
-                          type="date"
-                          v-model="Evento.periodo"
-                          ok-label="Ok"
-                          cancel-label="Cancelar"
-                        >
-                        </q-datetime>
-                    </div>
-                </div>
-                <hr/>
-
-                <div class="item multiple-lines">
-                    <div class="item-content">
-                        <div class="label">Horário de realização do evento</div>
-                        <q-datetime-range
-                          type="time"
-                          v-model="Evento.horario"
-                          ok-label="Ok"
-                          cancel-label="Cancelar"
-                        >
-                        </q-datetime>
-                    </div>
-                </div>
-                <hr/>
-
-            </div>
-
+            <button class="primary full-width" @click="submit">Realizar Inscrição</button>
         </div>
     </div>
 </template>
 
 <script>
 import {Toast, Loading} from 'quasar'
+import InscricaoForm from './inscricao'
+import helper from '../../../libs/helper'
 
 export default {
-  name: 'Inscrever',
+  name: 'NovaInscricao',
+
+  components: {
+    'inscricao-form': InscricaoForm
+  },
 
   data () {
     return {
@@ -129,7 +58,7 @@ export default {
   methods: {
     fetchDataMuseu () {
       Loading.show()
-      this.$http.get('/api/eventos/museu/' + this.$route.params.id).then((response) => {
+      this.$http.get('/api/museus/' + this.$route.params.id).then((response) => {
         this.Museu = response.data
         Loading.hide()
       }, (response) => {
@@ -146,6 +75,18 @@ export default {
       }, (response) => {
         Loading.hide()
         Toast.create.negative(response.data.error)
+      })
+    },
+
+    submit () {
+      var obj = Object.assign(this.Evento, {museu_id: this.$route.params.id})
+
+      this.$http.post('/api/eventos', obj).then((response) => {
+        Toast.create('Inscrição realizada com sucesso!')
+        this.$router.push('/museus/' + this.$route.params.id + '/inscricoes')
+      }, (response) => {
+        let strResp = helper.formatAsHtmlList(helper.getListError(response.data))
+        Toast.create.negative({html: strResp, timeout: 25000})
       })
     }
   }

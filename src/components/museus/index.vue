@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="layout-padding">
-    <h5>Instituições</h5>
+    <h5>Meus Museus</h5>
 
     <button class="primary big circular absolute-bottom-right push"
             @click="newMuseu()"
